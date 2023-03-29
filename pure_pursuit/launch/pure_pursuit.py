@@ -23,7 +23,7 @@ def generate_launch_description():
             {"velocity": 5.7}, #levine 9.0
             {"speed_lookahead_distance": 3.8}, #levine 2.0
             {"brake_gain": 3.80}, #levine 12.0
-            {"visualize": True},
+            {"visualize": False},
             {"wheel_base": 0.32},
             {"acceleration_lookahead_distance": 6.5},
             {"curvature_thresh": 0.1},
