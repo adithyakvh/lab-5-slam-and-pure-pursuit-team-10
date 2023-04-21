@@ -3,7 +3,8 @@ import numpy as np
 from scipy.interpolate import splprep, splev
 
 # Read in the data from the CSV file
-with open('/home/adithyakvh/Courses/F1-tenth/ROS_Installations_F1_tenth/all_labs_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/waypoints_straight_filtered.csv', 'r') as f:
+with open('/home/adithyakvh/Courses/F1-tenth/ROS_Installations_F1_tenth/all_labs_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/scripts/waypoints_track.csv', 'r') as f:
+    
     reader = csv.reader(f)
     next(reader)  # Skip the header row
     data = np.array(list(reader), dtype=np.float32)
@@ -23,7 +24,7 @@ x_new, y_new, z_new = splev(u_new, tck)
 
 # Write the interpolated data to a new CSV file
 # with open('/home/griffin/Documents/f1tenth_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/waypoints_sparse_interpolated.csv', 'w', newline='') as f:
-with open('/home/adithyakvh/Courses/F1-tenth/ROS_Installations_F1_tenth/all_labs_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/sparse_straights_interpolated.csv', 'w', newline='') as f:
+with open('/home/adithyakvh/Courses/F1-tenth/ROS_Installations_F1_tenth/all_labs_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/waypoints_interp_track_1.csv', 'w', newline='') as f:
 
 # with open('/home/adithyakvh/Courses/F1-tenth/ROS_Installations_F1_tenth/all_labs_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/waypoints_1_sparse.csv', 'w', newline='') as f:
 

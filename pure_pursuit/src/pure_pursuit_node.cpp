@@ -102,8 +102,8 @@ public:
         // TODO: create ROS subscribers and publishers
 
         pub_marker = this->create_publisher<visualization_msgs::msg::MarkerArray>("marker_array", 10);
-        //sub_pose = this->create_subscription<nav_msgs::msg::Odometry>("/ego_racecar/odom", 100 , std::bind(&PurePursuit::pose_callback, this, _1));
-        sub_pose = this->create_subscription<geometry_msgs::msg::PoseStamped>("/pf/viz/inferred_pose", 100 , std::bind(&PurePursuit::pose_callback, this, _1));
+        sub_pose = this->create_subscription<nav_msgs::msg::Odometry>("/ego_racecar/odom", 100 , std::bind(&PurePursuit::pose_callback, this, _1));
+        // sub_pose = this->create_subscription<geometry_msgs::msg::PoseStamped>("/pf/viz/inferred_pose", 100 , std::bind(&PurePursuit::pose_callback, this, _1));
 
         pub_drive = this->create_publisher<ackermann_msgs::msg::AckermannDriveStamped>("drive", 10);
 
@@ -116,11 +116,12 @@ public:
         // std::ifstream file("/home/nvidia/f1tenth_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/waypoints_straight_filtered.csv"); //make sure to place this file
 
 	    //std::ifstream file("/home/adithyakvh/Courses/F1-tenth/ROS_Installations_F1_tenth/all_labs_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/sparse_straights_interpolated.csv"); //make sure to place this fil
-        //std::ifstream file("/home/adithyakvh/Courses/F1-tenth/ROS_Installations_F1_tenth/all_labs_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/waypoints_straight_filtered.csv"); //make sure to place this file
+        // std::ifstream file("/home/adithyakvh/Courses/F1-tenth/ROS_Installations_F1_tenth/all_labs_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/waypoints_straight_filtered.csv"); //make sure to place this file
 
         //std::ifstream file("/sim_ws/src/pure_pursuit/src/sparse_straights_interpolated.csv"); //make sure to place this fil
-        //std::ifstream file("/sim_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/waypoints_straight_filtered.csv"); //make sure to place this file
-
+        // std::ifstream file("/sim_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/src/waypoints_straight_filtered.csv"); //make sure to place this file
+        // std::ifstream file("/home/adithyakvh/Courses/F1-tenth/ROS_Installations_F1_tenth/all_labs_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/waypoints/waypoints_interp_track_1.csv"); //make sure to place this file
+        std::ifstream file("/home/adithyakvh/Courses/F1-tenth/ROS_Installations_F1_tenth/all_labs_ws/src/lab-5-slam-and-pure-pursuit-team-10/pure_pursuit/waypoints/raceline_pv.csv");
         std::string line;
 
         //check if file is empty
@@ -157,9 +158,13 @@ public:
     {
 
 
-        
+        std::string frame_id = pose_msg->header.frame_id;
         // double car_x = pose_msg->pose.position.x;
         // double car_y = pose_msg->pose.position.y;
+        RCLCPP_INFO(this->get_logger(), "pose_callback_frame %s", pose_msg->header.frame_id);
+        // RCLCPP_INFO(this->get_logger(), "pose_callback_frame");
+
+        // std::cout<<"pose_callback_frame"<<pose_msg->header.frame_id<<std::endl;
 
         double car_x = pose_msg->pose.pose.position.x;
         double car_y = pose_msg->pose.pose.position.y;
